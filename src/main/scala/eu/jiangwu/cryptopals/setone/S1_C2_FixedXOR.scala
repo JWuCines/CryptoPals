@@ -2,7 +2,10 @@ package eu.jiangwu.cryptopals
 package setone
 
 object S1_C2_FixedXOR {
-  def run(in1: String, in2: String, res: String): Unit = {
+  def run: Unit = {
+    val in1: String = "1c0111001f010100061a024b53535009181c"
+    val in2: String = "686974207468652062756c6c277320657965"
+    val res: String = "746865206b696420646f6e277420706c6179"
     val xorRes: String = this.xor(in1.toByteArrayFromHexString, in2.toByteArrayFromHexString).toHexString
     Console.println("Input 1 XOR String: " + in1)
     Console.println("Input 2 XOR String: " + in2)

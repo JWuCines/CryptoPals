@@ -11,7 +11,9 @@ object S1_C1_HexToBase64 {
   private val cb64: Array[Char] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".toCharArray
   private val cd64: Array[Char] = "|$$$}rstuvwxyz{$$$$$$$>?@ABCDEFGHIJKLMNOPQRSTUVW$$$$$$XYZ[\\]^_`abcdefghijklmnopq".toCharArray
 
-  def run(hex: String, result: String): Unit = {
+  def run: Unit = {
+    val hex: String = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d" // INPUT
+    val result: String = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t" // OUTPUT
     val calc64: String = base64Encode(hex.toByteArrayFromHexString)
     val dec64: String = base64Decode(result).toHexString
     Console.println("Input HEX String: " + hex)

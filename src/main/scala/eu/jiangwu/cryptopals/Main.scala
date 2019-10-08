@@ -2,6 +2,7 @@ package eu.jiangwu.cryptopals
 
 import com.google.gson.Gson
 import eu.jiangwu.cryptopals.setone.{S1_C1_HexToBase64, S1_C2_FixedXOR, S1_C3_SingleByteXOR, S1_C4_DetectSingleXOR, S1_C5_RepeatingKeyXOR, S1_C6_BreakRepeatingKeyXOR, S1_C7_AESECBDecrypt, S1_C8_DetectAESECB}
+import eu.jiangwu.cryptopals.settwo.S2_C9_PCKS7Padding
 
 import scala.io.Source
 
@@ -22,25 +23,15 @@ object Main {
       case 1 =>
         chIndex match {
           case 1 =>
-            val hex: String = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d" // INPUT
-            val result: String = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t" // OUTPUT
-            S1_C1_HexToBase64.run(hex, result)
+            S1_C1_HexToBase64.run
           case 2 =>
-            val x1: String = "1c0111001f010100061a024b53535009181c"
-            val x2: String = "686974207468652062756c6c277320657965"
-            val res: String = "746865206b696420646f6e277420706c6179"
-            S1_C2_FixedXOR.run(x1, x2, res)
+            S1_C2_FixedXOR.run
           case 3 =>
-            val x1: String = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
-            S1_C3_SingleByteXOR.run(x1)
+            S1_C3_SingleByteXOR.run
           case 4 =>
             S1_C4_DetectSingleXOR.run
           case 5 =>
-            val input: String = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
-            val result: String = "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a2622632427276527" +
-                                 "2a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f"
-            val key: String = "ICE"
-            S1_C5_RepeatingKeyXOR.run(input, key, result)
+            S1_C5_RepeatingKeyXOR.run
           case 6 =>
             val testString1: String = "this is a test"
             val testString2: String = "wokka wokka!!!"
@@ -48,9 +39,15 @@ object Main {
             S1_C6_BreakRepeatingKeyXOR.run
           case 7 =>
             val key: String = "YELLOW SUBMARINE"
+            assert(key.length == 16)
             S1_C7_AESECBDecrypt.run(key)
           case 8 =>
             S1_C8_DetectAESECB.run
+        }
+      case 2 =>
+        chIndex match {
+          case 9 =>
+            S2_C9_PCKS7Padding.run
         }
     }
   }

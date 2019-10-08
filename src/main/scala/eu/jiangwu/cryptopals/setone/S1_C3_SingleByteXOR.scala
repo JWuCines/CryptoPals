@@ -2,7 +2,8 @@ package eu.jiangwu.cryptopals
 package setone
 
 object S1_C3_SingleByteXOR {
-  def run(in1: String): Unit = {
+  def run: Unit = {
+    val in1: String = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
     Console.println("Input XORed String: " + in1)
     Console.println("Reversed XOR Strings:\n" + scoredSingleByteXORMap(in1.toByteArrayFromHexString)
         .map(x => "\t\t" + x._1 + " -> Score = " + x._3+ ": "+ x._2.toCharString).mkString("\n"))
