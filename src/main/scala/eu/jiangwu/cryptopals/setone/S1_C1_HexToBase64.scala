@@ -52,5 +52,5 @@ object S1_C1_HexToBase64 {
     result
   }
 
-  def base64DecodeJava(str: String): Array[Byte] = Base64.getDecoder.decode(str)
+  private def base64DecodeJava(str: String): Array[Byte] = Base64.getDecoder.decode(str)
 }

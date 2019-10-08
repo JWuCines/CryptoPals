@@ -34,9 +34,9 @@ object S1_C6_BreakRepeatingKeyXOR {
       S1_C3_SingleByteXOR.scoredSingleByteXORMap(Range(i, dec64.length, keysize).map(j => dec64(j)).toArray).maxBy(_._3)
     }.toArray
     val key: String = xored.map(_._1).mkString
-    val message_parts: Array[Array[Byte]] = xored.map(_._2)
-    val message: String = message_parts.maxBy(_.length).indices.flatMap { i =>
-      message_parts.flatMap(part => if(part.length >= i+1) Option(part(i)) else None)
+    val messageParts: Array[Array[Byte]] = xored.map(_._2)
+    val message: String = messageParts.maxBy(_.length).indices.flatMap { i =>
+      messageParts.flatMap(part => if(part.length >= i+1) Option(part(i)) else None)
     }.toArray.toCharString
     (keysize, message, key)
   }

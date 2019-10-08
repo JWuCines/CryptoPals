@@ -13,13 +13,23 @@ object S1_C7_AESECBDecrypt {
     Console.println("Algorithm mode used: " + mode)
     Console.println("Key used: " + key)
     val s: String = readListFromResource("setone/7.txt").mkString
-    Console.println(">> Decoded text: \n" + decrypt(s, key, algo, mode))
+    val data: Array[Byte] = S1_C1_HexToBase64.base64Decode(s)
+    val keyData: Array[Byte] = key.getBytes
+    val decData: Array[Byte] = decrypt(data, keyData, algo, mode)
+    assert(decData.deep == aesECBDecrypt(data, keyData).deep)
+    Console.println(">> Decoded text: \n" + decData.toCharString.stripMargin.trim)
   }
 
-  def decrypt(base64: String, key: String, algo: String, mode: String): String = {
-    val s: Array[Byte] = S1_C1_HexToBase64.base64Decode(base64)
+  def aesECBDecrypt(data: Array[Byte], key: Array[Byte], mode: String = "AES/ECB/NoPadding"): Array[Byte] = {
+    decrypt(data, key, "AES", mode)
+  }
+  def aesECBPKCS5Decrypt(data: Array[Byte], key: Array[Byte]): Array[Byte] = {
+    aesECBDecrypt(data, key, "AES/ECB/PKCS5Padding")
+  }
+
+  def decrypt(data: Array[Byte], key: Array[Byte], algo: String, mode: String): Array[Byte] = {
     val cipher: Cipher = Cipher.getInstance(mode)
-    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.getBytes, algo))
-    cipher.doFinal(s).toCharString.stripMargin.trim
+    cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, algo))
+    cipher.doFinal(data)
   }
 }

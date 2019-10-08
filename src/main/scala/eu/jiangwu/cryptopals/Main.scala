@@ -2,7 +2,7 @@ package eu.jiangwu.cryptopals
 
 import com.google.gson.Gson
 import eu.jiangwu.cryptopals.setone.{S1_C1_HexToBase64, S1_C2_FixedXOR, S1_C3_SingleByteXOR, S1_C4_DetectSingleXOR, S1_C5_RepeatingKeyXOR, S1_C6_BreakRepeatingKeyXOR, S1_C7_AESECBDecrypt, S1_C8_DetectAESECB}
-import eu.jiangwu.cryptopals.settwo.S2_C9_PCKS7Padding
+import eu.jiangwu.cryptopals.settwo.{S2_C10_CBCMode, S2_C9_PCKS7Padding}
 
 import scala.io.Source
 
@@ -48,6 +48,8 @@ object Main {
         chIndex match {
           case 9 =>
             S2_C9_PCKS7Padding.run
+          case 10 =>
+            S2_C10_CBCMode.run
         }
     }
   }

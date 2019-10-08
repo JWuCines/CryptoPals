@@ -15,7 +15,7 @@ object S1_C3_SingleByteXOR {
 
   def singleByteXORMap(in1: Array[Byte]): Array[(Char, Array[Byte])] = {
     (32 to 126).map{ c =>
-      (c.toChar, S1_C2_FixedXOR.xor(in1, (c.toChar.toString * in1.size).getBytes))
+      (c.toChar, S1_C2_FixedXOR.xor(in1, c.toByte.multiple(in1.length)))
     }.toArray
   }
 }
