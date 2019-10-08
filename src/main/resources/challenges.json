@@ -1,0 +1,70 @@
+{
+  "challenges": [
+    {
+      "index": 1,
+      "name": "Set 1: Basics",
+      "challenges": [
+        {
+          "index": 1,
+          "name": "Convert hex to base64"
+        },
+        {
+          "index": 2,
+          "name": "Fixed XOR"
+        },
+        {
+          "index": 3,
+          "name": "Single-byte XOR cipher"
+        },
+        {
+          "index": 4,
+          "name": "Detect single-character XOR"
+        },
+        {
+          "index": 5,
+          "name": "Implement repeating-key XOR"
+        },
+        {
+          "index": 6,
+          "name": "Break repeating-key XOR"
+        },
+        {
+          "index": 7,
+          "name": "AES in ECB mode"
+        },
+        {
+          "index": 8,
+          "name": "Detect AES in ECB mode"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Set 2: Block crypto"
+    },
+    {
+      "index": 3,
+      "name": "Set 3: Block & stream crypto"
+    },
+    {
+      "index": 4,
+      "name": "Set 4: Stream crypto and randomness"
+    },
+    {
+      "index": 5,
+      "name": "Set 5: Diffie-Hellman and friends"
+    },
+    {
+      "index": 6,
+      "name": "Set 6: RSA and DSA"
+    },
+    {
+      "index": 7,
+      "name": "Set 7: Hashes"
+    },
+    {
+      "index": 8,
+      "name": "Set 8: Abstract Algebra"
+    }
+  ]
+}
