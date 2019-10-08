@@ -1,7 +1,7 @@
 package eu.jiangwu.cryptopals
 
 import com.google.gson.Gson
-import eu.jiangwu.cryptopals.setone.{S1_C1_HexToBase64, S1_C2_FixedXOR, S1_C3_SingleByteXOR, S1_C4_DetectSingleXOR, S1_C5_RepeatingKeyXOR, S1_C6_BreakRepeatingKeyXOR, S1_C7_AESECBDecrypt}
+import eu.jiangwu.cryptopals.setone.{S1_C1_HexToBase64, S1_C2_FixedXOR, S1_C3_SingleByteXOR, S1_C4_DetectSingleXOR, S1_C5_RepeatingKeyXOR, S1_C6_BreakRepeatingKeyXOR, S1_C7_AESECBDecrypt, S1_C8_DetectAESECB}
 
 import scala.io.Source
 
@@ -34,7 +34,7 @@ object Main {
             val x1: String = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
             S1_C3_SingleByteXOR.run(x1)
           case 4 =>
-            S1_C4_DetectSingleXOR.run()
+            S1_C4_DetectSingleXOR.run
           case 5 =>
             val input: String = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
             val result: String = "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a2622632427276527" +
@@ -45,10 +45,12 @@ object Main {
             val testString1: String = "this is a test"
             val testString2: String = "wokka wokka!!!"
             assert(S1_C6_BreakRepeatingKeyXOR.hamming(testString1, testString2) == 37)
-            S1_C6_BreakRepeatingKeyXOR.run()
+            S1_C6_BreakRepeatingKeyXOR.run
           case 7 =>
             val key: String = "YELLOW SUBMARINE"
             S1_C7_AESECBDecrypt.run(key)
+          case 8 =>
+            S1_C8_DetectAESECB.run
         }
     }
   }
