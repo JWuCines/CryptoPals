@@ -7,7 +7,6 @@ import javax.crypto.spec.SecretKeySpec
 object S1_C7_AESECBDecrypt {
 
   def run(key: String): Unit = {
-    assert(key.length == 16)
     val algo: String = "AES"
     val mode: String = "AES/ECB/NoPadding"
     Console.println("Algorithm used: " + algo)

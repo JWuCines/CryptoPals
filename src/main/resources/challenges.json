@@ -40,7 +40,41 @@
     },
     {
       "index": 2,
-      "name": "Set 2: Block crypto"
+      "name": "Set 2: Block crypto",
+      "challenges": [
+        {
+          "index": 9,
+          "name": "Implement PKCS#7 padding"
+        },
+        {
+          "index": 10,
+          "name": "Implement CBC mode"
+        },
+        {
+          "index": 11,
+          "name": "An ECB/CBC detection oracle"
+        },
+        {
+          "index": 12,
+          "name": "Byte-at-a-time ECB decryption (Simple)"
+        },
+        {
+          "index": 13,
+          "name": "ECB cut-and-paste"
+        },
+        {
+          "index": 14,
+          "name": "Byte-at-a-time ECB decryption (Harder)"
+        },
+        {
+          "index": 15,
+          "name": "PKCS#7 padding validation"
+        },
+        {
+          "index": 16,
+          "name": "CBC bitflipping attacks"
+        }
+      ]
     },
     {
       "index": 3,
