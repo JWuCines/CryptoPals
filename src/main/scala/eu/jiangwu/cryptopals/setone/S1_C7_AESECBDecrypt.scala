@@ -23,6 +23,7 @@ object S1_C7_AESECBDecrypt {
   def aesECBDecrypt(data: Array[Byte], key: Array[Byte], mode: String = "AES/ECB/NoPadding"): Array[Byte] = {
     decrypt(data, key, "AES", mode)
   }
+
   def aesECBPKCS5Decrypt(data: Array[Byte], key: Array[Byte]): Array[Byte] = {
     aesECBDecrypt(data, key, "AES/ECB/PKCS5Padding")
   }
