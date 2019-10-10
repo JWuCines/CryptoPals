@@ -1,11 +1,14 @@
 package eu.jiangwu
 
 import scala.io.Source
+import scala.util.Random
 
 package object cryptopals {
   def readListFromResource(path: String): List[String] = {
     Source.fromResource(path).getLines.map(_.stripMargin).toList
   }
+
+  def generateRandomArrayByte(size: Int = 16): Array[Byte] = (0 until size).map(i => Random.nextInt(255).toByte).toArray
 
   implicit class ArrayByteTransformation(bytes: Array[Byte]) {
     def toHexString: String = {

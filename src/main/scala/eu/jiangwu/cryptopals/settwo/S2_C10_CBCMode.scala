@@ -29,7 +29,7 @@ object S2_C10_CBCMode {
     }
 
     def aesECBPKCS5Encrypt(data: Array[Byte], key: Array[Byte]): Array[Byte] = {
-      aesECBEncrypt(data, key, "AES/ECB/PKCS5Padding")
+      aesECBEncrypt(S2_C9_PCKS7Padding.padding(data, key.length), key, "AES/ECB/PKCS5Padding")
     }
 
     def encrypt(data: Array[Byte], key: Array[Byte], algo: String, mode: String): Array[Byte] = {
