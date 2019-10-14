@@ -6,7 +6,7 @@ import eu.jiangwu.cryptopals.setone.S1_C8_DetectAESECB
 import scala.util.Random
 
 object S2_C11_ECBCBCDetection {
-    final val BLOCK_SIZE = 16
+    final val BLOCK_SIZE = AES_LENGTH
     final val ECB = "ECB"
     final val CBC = "CBC"
     def run: Unit = {

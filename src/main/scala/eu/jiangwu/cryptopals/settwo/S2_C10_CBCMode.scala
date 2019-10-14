@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec
 object S2_C10_CBCMode {
     def run {
         val key: String = "YELLOW SUBMARINE"
-        assert(key.length == 16)
+        assert(key.length == AES_LENGTH)
         val ivByte: Byte = 0
         val iv: Array[Byte] = ivByte.multiple(key.length)
         Console.println("Key used " + key + " size: " + key.length)

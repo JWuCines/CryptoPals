@@ -10,6 +10,6 @@ object S1_C8_DetectAESECB {
       .foreach(v => Console.println(v._1 + ": "+ v._2))
   }
 
-  def detectAESECB(s: Array[Byte], blocksize: Int = 16): Boolean =
+  def detectAESECB(s: Array[Byte], blocksize: Int = AES_LENGTH): Boolean =
       s.length % blocksize == 0 && s.grouped(blocksize).map(_.toHexString).toSet.size != (s.length / blocksize)
 }
