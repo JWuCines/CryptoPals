@@ -4,11 +4,13 @@ import scala.io.Source
 import scala.util.Random
 
 package object cryptopals {
+  val AES_LENGTH = 16
+
   def readListFromResource(path: String): List[String] = {
     Source.fromResource(path).getLines.map(_.stripMargin).toList
   }
 
-  def generateRandomArrayByte(size: Int = 16): Array[Byte] = (0 until size).map(i => Random.nextInt(255).toByte).toArray
+  def generateRandomArrayByte(size: Int = AES_LENGTH): Array[Byte] = (0 until size).map(i => Random.nextInt(255).toByte).toArray
 
   implicit class ArrayByteTransformation(bytes: Array[Byte]) {
     def toHexString: String = {

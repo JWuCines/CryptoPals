@@ -25,7 +25,7 @@ object S2_C12_ByteAtATimeECBDecrypt {
 
   def run: Unit = {
     val oracle = new ECBOracle
-    assert(oracle.findBlockLength == 16)
+    assert(oracle.findBlockLength == AES_LENGTH)
     Console.println("Block size found: " + oracle.findBlockLength)
     assert(S1_C8_DetectAESECB.detectAESECB(oracle.encrypt('A'.toByte.multiple(100))))
     Console.println("Detected AES ECB correctly")
