@@ -13,28 +13,30 @@ class ECBOracle {
       "YnkK")
     def getData(data: Array[Byte]): Array[Byte] = data ++ secret
     def encrypt(data: Array[Byte] = Array.empty[Byte]): Array[Byte] = S2_C10_CBCMode.aesECBPKCS5Encrypt(getData(data), key)
-    def findBlockLength: Int = {
-      def calc(i: Int): Int = encrypt('A'.toByte.multiple(i)).length
-      val inLen = calc(0)
-      val index = (1 to 255).takeWhile(i => calc(i) == inLen).last + 1
-      calc(index) - inLen
-    }
 }
 
 object S2_C12_ByteAtATimeECBDecrypt {
 
   def run: Unit = {
     val oracle = new ECBOracle
-    assert(oracle.findBlockLength == AES_LENGTH)
-    Console.println("Block size found: " + oracle.findBlockLength)
+    val blockSize = findBlockLength(oracle)
+    assert(blockSize == AES_LENGTH)
+    Console.println("Block size found: " + blockSize)
     assert(S1_C8_DetectAESECB.detectAESECB(oracle.encrypt('A'.toByte.multiple(100))))
     Console.println("Detected AES ECB correctly")
     assert(S2_C9_PCKS7Padding.removePadding(byteAtATimeECBDecryption(oracle)).deep == oracle.secret.deep)
     Console.println("Secret decrypted: \n" + oracle.secret.toCharString)
   }
 
+  def findBlockLength(oracle: ECBOracle): Int = {
+    def calcLengthMultipleA(i: Int): Int = oracle.encrypt('A'.toByte.multiple(i)).length
+    val inLen = calcLengthMultipleA(0)
+    val index = (1 to 255).takeWhile(i => calcLengthMultipleA(i) == inLen).last + 1
+    calcLengthMultipleA(index) - inLen
+  }
+
   def getNextByte(current: Array[Byte], oracle: ECBOracle): Array[Byte] = {
-    val blockSize: Int = oracle.findBlockLength
+    val blockSize: Int = findBlockLength(oracle)
     val blockNumber: Int = current.length / blockSize
     val prefix = 'A'.toByte.multiple(math.abs(blockSize*(blockNumber+1) - 1 - current.length) % blockSize)
     val targetBlock = oracle.encrypt(prefix).grouped(blockSize).toArray.apply(blockNumber)
