@@ -58,6 +58,8 @@ object Main {
             S2_C13_ECBCutAndPaste.run
           case 14 =>
             S2_C14_ByteAtATimeECBDecryptHarder.run
+          case 15 =>
+            S2_C15_PCKS7RemovePadding.run
         }
     }
   }
