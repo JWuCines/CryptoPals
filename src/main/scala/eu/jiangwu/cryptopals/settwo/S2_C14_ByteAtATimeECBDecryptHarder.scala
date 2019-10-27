@@ -7,7 +7,7 @@ import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
 class ECBOracleHarder extends ECBOracle {
-    val prefix = generateRandomArrayByte(Random.nextInt(AES_LENGTH))
+    val prefix = generateRandomArrayByte(Random.nextInt(10000) % AES_LENGTH)
     override def getData(data: Array[Byte]): Array[Byte] = prefix ++ data ++ secret
 }
 

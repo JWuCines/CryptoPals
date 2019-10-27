@@ -15,7 +15,7 @@ object S1_C2_FixedXOR {
   }
 
   def xor(in1: Array[Byte], in2: Array[Byte]): Array[Byte] =
-    in1.zip(in2)
+    in1.zipAll(in2, 0.toByte, 0.toByte)
       .map{ case (i1: Byte, i2: Byte) => xor(i1, i2) }
 
   def xor(in1: Byte, in2: Byte): Byte =

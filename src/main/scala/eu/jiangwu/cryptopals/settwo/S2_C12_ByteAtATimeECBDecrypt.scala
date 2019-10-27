@@ -31,8 +31,10 @@ object S2_C12_ByteAtATimeECBDecrypt {
   def findBlockLength(oracle: ECBOracle): Int = {
     def calcLengthMultipleA(i: Int): Int = oracle.encrypt('A'.toByte.multiple(i)).length
     val inLen = calcLengthMultipleA(0)
-    val index = (1 to 255).takeWhile(i => calcLengthMultipleA(i) == inLen).last + 1
-    calcLengthMultipleA(index) - inLen
+    (1 to 256).takeWhile(i => calcLengthMultipleA(i) == inLen)
+              .lastOption
+              .map(i => calcLengthMultipleA(i + 1) - inLen)
+              .get
   }
 
   def getNextByte(current: Array[Byte], oracle: ECBOracle): Array[Byte] = {

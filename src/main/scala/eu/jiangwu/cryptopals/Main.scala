@@ -60,6 +60,8 @@ object Main {
             S2_C14_ByteAtATimeECBDecryptHarder.run
           case 15 =>
             S2_C15_PCKS7RemovePadding.run
+          case 16 =>
+            S2_C16_CBCBitflipping.run
         }
     }
   }
