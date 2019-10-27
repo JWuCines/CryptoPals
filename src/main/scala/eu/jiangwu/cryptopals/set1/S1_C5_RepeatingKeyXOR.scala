@@ -1,5 +1,5 @@
 package eu.jiangwu.cryptopals
-package setone
+package set1
 
 object S1_C5_RepeatingKeyXOR {
 

@@ -1,6 +1,6 @@
 package eu.jiangwu.cryptopals
 
-package object setone {
+package object set1 {
   def scoreWords(str: String): Double = {
     val CHARACTER_FREQ: Map[Char, Double] = Map(
       'a'-> 0.0651738, 'b'-> 0.0124248, 'c'-> 0.0217339, 'd'-> 0.0349835, 'e'-> 0.1041442, 'f'-> 0.0197881, 'g'-> 0.0158610,

@@ -1,11 +1,11 @@
 package eu.jiangwu.cryptopals
-package setone
+package set1
 
-import eu.jiangwu.cryptopals.setone.S1_C3_SingleByteXOR._
+import eu.jiangwu.cryptopals.set1.S1_C3_SingleByteXOR._
 
 object S1_C4_DetectSingleXOR {
   def run: Unit = {
-    val path: String = "setone/4.txt"
+    val path: String = "set1/4.txt"
     val tops: Array[(Char, String, Double, String)] = detectSingleXOR(path)
     Console.println("Reading list from " + path)
     Console.println("Tops score for each XORed strings:\n" + tops

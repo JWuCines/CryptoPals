@@ -1,7 +1,7 @@
 package eu.jiangwu.cryptopals
-package settwo
+package set2
 
-import eu.jiangwu.cryptopals.setone.{S1_C1_HexToBase64, S1_C7_AESECBDecrypt, S1_C8_DetectAESECB}
+import eu.jiangwu.cryptopals.set1.{S1_C1_HexToBase64, S1_C7_AESECBDecrypt, S1_C8_DetectAESECB}
 
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random

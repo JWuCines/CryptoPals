@@ -1,7 +1,7 @@
 package eu.jiangwu.cryptopals
-package settwo
+package set2
 
-import eu.jiangwu.cryptopals.setone.S1_C7_AESECBDecrypt
+import eu.jiangwu.cryptopals.set1.S1_C7_AESECBDecrypt
 
 case class Profile(email: String, uid: Int = 10, role: String = "user") {
   def toCookieString: String = "email=" + email + "&uid=" + uid + "&role=" + role

@@ -1,5 +1,5 @@
 package eu.jiangwu.cryptopals
-package setone
+package set1
 
 import java.util.Base64
 import scala.collection.mutable.ArrayBuffer

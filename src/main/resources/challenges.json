@@ -78,7 +78,41 @@
     },
     {
       "index": 3,
-      "name": "Set 3: Block & stream crypto"
+      "name": "Set 3: Block & stream crypto",
+      "challenges": [
+        {
+          "index": 17,
+          "name": "The CBC padding oracle"
+        },
+        {
+          "index": 18,
+          "name": "Implement CTR, the stream cipher mode"
+        },
+        {
+          "index": 19,
+          "name": "Break fixed-nonce CTR mode using substitutions"
+        },
+        {
+          "index": 20,
+          "name": "Break fixed-nonce CTR statistically"
+        },
+        {
+          "index": 21,
+          "name": "Implement the MT19937 Mersenne Twister RNG"
+        },
+        {
+          "index": 22,
+          "name": "Crack an MT19937 seed"
+        },
+        {
+          "index": 23,
+          "name": "Clone an MT19937 RNG from its output"
+        },
+        {
+          "index": 24,
+          "name": "Create the MT19937 stream cipher and break it"
+        }
+      ]
     },
     {
       "index": 4,

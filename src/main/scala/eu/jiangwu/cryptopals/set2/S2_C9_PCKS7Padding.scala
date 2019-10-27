@@ -1,5 +1,5 @@
 package eu.jiangwu.cryptopals
-package settwo
+package set2
 
 object S2_C9_PCKS7Padding {
     def run {

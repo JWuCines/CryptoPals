@@ -1,8 +1,8 @@
 package eu.jiangwu.cryptopals
 
 import com.google.gson.Gson
-import eu.jiangwu.cryptopals.setone._
-import eu.jiangwu.cryptopals.settwo._
+import eu.jiangwu.cryptopals.set1._
+import eu.jiangwu.cryptopals.set2._
 
 import scala.io.Source
 
@@ -62,6 +62,10 @@ object Main {
             S2_C15_PCKS7RemovePadding.run
           case 16 =>
             S2_C16_CBCBitflipping.run
+        }
+      case 3 =>
+        chIndex match {
+          case 17 =>
         }
     }
   }

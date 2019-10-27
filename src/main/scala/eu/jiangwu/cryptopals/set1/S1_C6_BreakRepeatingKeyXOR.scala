@@ -1,9 +1,9 @@
 package eu.jiangwu.cryptopals
-package setone
+package set1
 
 object S1_C6_BreakRepeatingKeyXOR {
   def run: Unit = {
-    val path: String = "setone/6.txt"
+    val path: String = "set1/6.txt"
     val message: String = readListFromResource(path).mkString
     val (_, output, key) = breakRepeatingKeyXOR(message)
     Console.print(">> Key found:\n\t" + key + "\n>> Text: \n" + output)

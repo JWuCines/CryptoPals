@@ -1,5 +1,5 @@
 package eu.jiangwu.cryptopals
-package setone
+package set1
 
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
@@ -12,7 +12,7 @@ object S1_C7_AESECBDecrypt {
     Console.println("Algorithm used: " + algo)
     Console.println("Algorithm mode used: " + mode)
     Console.println("Key used: " + key)
-    val s: String = readListFromResource("setone/7.txt").mkString
+    val s: String = readListFromResource("set1/7.txt").mkString
     val data: Array[Byte] = S1_C1_HexToBase64.base64Decode(s)
     val keyData: Array[Byte] = key.getBytes
     val decData: Array[Byte] = decrypt(data, keyData, algo, mode)

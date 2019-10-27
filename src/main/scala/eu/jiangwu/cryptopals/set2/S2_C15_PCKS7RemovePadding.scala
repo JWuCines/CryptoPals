@@ -1,5 +1,5 @@
 package eu.jiangwu.cryptopals
-package settwo
+package set2
 import S2_C9_PCKS7Padding._
 object S2_C15_PCKS7RemovePadding {
 
