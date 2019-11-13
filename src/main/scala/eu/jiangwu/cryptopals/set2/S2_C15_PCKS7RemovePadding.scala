@@ -23,6 +23,5 @@ object S2_C15_PCKS7RemovePadding {
       Console.println(test3 + " padding is valid: " + test3Valid)
     }
 
-    def isValidPadding(data: Array[Byte], padding: Byte = 4): Boolean =
-        !removePadding(data).exists(_ < 31)
+    def isValidPadding(data: Array[Byte]): Boolean = data.endsWith(data.last.multiple(data.last.toInt))
 }

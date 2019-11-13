@@ -40,14 +40,12 @@ object S2_C10_CBCMode {
 
     def aesCBCDecrypt(data: Array[Byte], key: Array[Byte], iv: Array[Byte]): Array[Byte] = {
         var currentIV: Array[Byte] = iv
-      S2_C9_PCKS7Padding.removePadding(
         data.grouped(key.length).flatMap { block =>
           val dec: Array[Byte] = S1_C7_AESECBDecrypt.aesECBDecrypt(S2_C9_PCKS7Padding.padding(block, key.length), key)
           val plain: Array[Byte] = S1_C2_FixedXOR.xor(currentIV, dec)
           currentIV = block
           plain
         }.toArray
-      )
     }
 
     def aesCBCEncrypt(data: Array[Byte], key: Array[Byte], iv: Array[Byte]): Array[Byte] = {

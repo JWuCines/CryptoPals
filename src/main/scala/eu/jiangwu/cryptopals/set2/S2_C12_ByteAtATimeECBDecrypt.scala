@@ -6,7 +6,7 @@ import eu.jiangwu.cryptopals.set1.{S1_C1_HexToBase64, S1_C7_AESECBDecrypt, S1_C8
 import scala.collection.mutable.ArrayBuffer
 
 class ECBOracle {
-    val key = generateRandomArrayByte(16)
+    val key = generateRandomArrayByte(AES_LENGTH)
     val secret: Array[Byte] = S1_C1_HexToBase64.base64Decode("Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkg" +
       "aGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBq" +
       "dXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUg" +

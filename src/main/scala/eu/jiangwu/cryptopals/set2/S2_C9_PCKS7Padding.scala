@@ -15,9 +15,10 @@ object S2_C9_PCKS7Padding {
         Console.println("Depadded block (ascii) " + depaddedBlock.toCharString + " size: " + depaddedBlock.length)
     }
 
-    def padding(bytes: Array[Byte], blockSize: Integer, paddingByte: Byte = 4): Array[Byte] =
-        bytes.grouped(blockSize).flatMap(data => data ++ paddingByte.multiple(blockSize - data.length)).toArray
+    def padding(bytes: Array[Byte], blockSize: Integer = AES_LENGTH): Array[Byte] =
+        bytes.grouped(blockSize).flatMap(data => data ++ (blockSize - data.length).toByte.multiple(blockSize - data.length)).toArray
 
-    def removePadding(bytes: Array[Byte], paddingByte: Byte = 4): Array[Byte] =
-        bytes.reverse.dropWhile(_ == paddingByte).reverse
+    def removePadding(bytes: Array[Byte], blockSize: Int = AES_LENGTH): Array[Byte] = {
+        if (bytes.endsWith(bytes.last.multiple(bytes.last.toInt))) bytes.dropRight(bytes.last.toInt) else bytes
+    }
 }

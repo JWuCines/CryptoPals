@@ -18,7 +18,7 @@ package object cryptopals {
     }
 
     def toCharString: String = {
-      bytes.map(c => if(c > 31 && c < 127) c.toChar else "\\x" + Array(c).toHexString).mkString
+      bytes.map(c => if(c == 10 || c == 13 || (c > 31 && c < 127)) c.toChar else "\\x" + Array(c).toHexString).mkString
     }
   }
 

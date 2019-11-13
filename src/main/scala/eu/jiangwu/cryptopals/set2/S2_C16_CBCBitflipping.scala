@@ -9,7 +9,8 @@ class CBCOracle extends ECBOracleHarder {
   val iv = generateRandomArrayByte()
   override def getData(data: Array[Byte]): Array[Byte] = prefix ++ data.filter(c => c != ';' && c != '=') ++ secret
   override def encrypt(data: Array[Byte]): Array[Byte] = S2_C10_CBCMode.aesCBCEncrypt(getData(data), key, iv)
-  def decrypt(data: Array[Byte]): Array[Byte] = S2_C10_CBCMode.aesCBCDecrypt(data, key, iv)
+  def decrypt(data: Array[Byte], iv: Array[Byte]): Array[Byte] = S2_C10_CBCMode.aesCBCDecrypt(data, key, iv)
+  def decrypt(data: Array[Byte]): Array[Byte] = decrypt(data, iv)
   def decryptAndCheck(data: Array[Byte], check: Array[Byte]): Boolean = decrypt(data).containsSlice(check)
 }
 
@@ -25,7 +26,7 @@ object S2_C16_CBCBitflipping {
     val xored = xor(encrypted, 0.toByte.multiple(16) ++ fakeXORed)
     assert(oracle.decryptAndCheck(xored, checkValue))
     Console.println("Using " + fakeXORed.toCharString + " as value, the oracle will return true for admin value because of double XOR")
-    Console.println("Decoded message: " + oracle.decrypt(xored).toCharString)
+    Console.println("Decoded message: " + S2_C9_PCKS7Padding.removePadding(oracle.decrypt(xored)).toCharString)
   }
 }
 /*
