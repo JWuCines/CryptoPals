@@ -21,7 +21,7 @@ object S3_C17_CBCPaddingOracle {
     Console.println("Encrypted data: " + encData.toHexString)
     val decData: String = attackPaddingOracle(encData, oracle).toCharString
     Console.println("Decrypted data, knowing iv: " + decData)
-    Console.println("Decoded and decrypted data, knowing iv: " + S1_C1_HexToBase64.base64Decode(decData))
+    Console.println("Decoded and decrypted data, knowing iv: " + S1_C1_HexToBase64.base64Decode(decData).toCharString)
   }
 
   def forcePreviousBlock(iv: Array[Byte], b: Byte, padLen: Int, kPlain: Array[Byte]): Array[Byte] = {
@@ -36,18 +36,24 @@ object S3_C17_CBCPaddingOracle {
     S2_C9_PCKS7Padding.removePadding(
       (Array(oracle.iv) ++ encData.grouped(AES_LENGTH)).sliding(2).flatMap { case blocks: Array[Array[Byte]] =>
       val plainBlock: ArrayBuffer[Byte] = ArrayBuffer.empty[Byte]
-      (0 until AES_LENGTH).reverse.toArray.foreach { i =>
+      (0 until AES_LENGTH).toArray.foreach { i =>
         val padLen = plainBlock.size + 1
         val v = (0 until 128).map(_.toByte).toArray.flatMap { c =>
           if (oracle.decryptAndCheckPadding(blocks(1), forcePreviousBlock(blocks(0), c, padLen, plainBlock.toArray))) Option(c)
           else None
-        }.flatMap { b =>
-          (0 until 128).map(_.toByte).flatMap { c =>
-            if (oracle.decryptAndCheckPadding(blocks(1), forcePreviousBlock(blocks(0), c, padLen + 1, Array(b) ++ plainBlock))) Option(b)
-            else None
+        }
+
+        val vOk = if(v.size > 1) {
+          v.flatMap { b =>
+            (0 until 128).map(_.toByte).flatMap { c =>
+              if (oracle.decryptAndCheckPadding(blocks(1), forcePreviousBlock(blocks(0), c, padLen + 1, Array(b) ++ plainBlock))) Option(b)
+              else None
+            }
           }
         }
-        plainBlock.prepend(v.head)
+        else v
+
+        plainBlock.prepend(vOk.head)
       }
       plainBlock
     }.toArray)
