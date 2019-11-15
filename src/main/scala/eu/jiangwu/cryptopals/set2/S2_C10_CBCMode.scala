@@ -13,7 +13,7 @@ object S2_C10_CBCMode {
         val iv: Array[Byte] = ivByte.multiple(key.length)
         Console.println("Key used " + key + " size: " + key.length)
         Console.println("Initial IV (hex): " + iv.toHexString)
-        val dec64: Array[Byte] = S1_C1_HexToBase64.base64Decode(readListFromResource("set2/10.txt").mkString)
+        val dec64: Array[Byte] = S1_C1_HexToBase64.base64Decode(readArrayFromResource("set2/10.txt").mkString)
         Console.println("Base64 decode message length: " + dec64.length)
         val dec: Array[Byte] = aesCBCDecrypt(dec64, key.getBytes, iv)
         val unpadDec: Array[Byte] = S2_C9_PCKS7Padding.removePadding(dec)

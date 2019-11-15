@@ -5,8 +5,6 @@ import eu.jiangwu.cryptopals.set1._
 import eu.jiangwu.cryptopals.set2._
 import eu.jiangwu.cryptopals.set3._
 
-import scala.io.Source
-
 case class Challenge(index: Int, name: String, challenges: Array[Challenge] = Array.empty[Challenge])
 case class Challenges(challenges: Array[Challenge])
 
@@ -52,12 +50,13 @@ object Main {
         chIndex match {
           case 17 => S3_C17_CBCPaddingOracle.run
           case 18 => S3_C18_AESCTR.run
+          case 19 => S3_C19_BreakFixedNonceCTRSubstitution.run
         }
     }
   }
 
   def readChallengesFromJson: Array[Challenge] = {
-    val json: String = readListFromResource("challenges.json").mkString("\n").stripMargin
+    val json: String = readArrayFromResource("challenges.json").mkString("\n").stripMargin
     if(json.length > 0) new Gson().fromJson(json, classOf[Challenges]).challenges
     else Array.empty[Challenge]
   }

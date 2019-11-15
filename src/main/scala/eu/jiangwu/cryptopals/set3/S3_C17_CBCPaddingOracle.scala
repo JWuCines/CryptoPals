@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
 class CBCPaddingOracle extends CBCOracle {
-  val strings: List[String] = readListFromResource("set3/17.txt")
+  val strings: Array[String] = readArrayFromResource("set3/17.txt")
   override def getData(data: Array[Byte]): Array[Byte] = strings(Random.nextInt(10000) % strings.size).getBytes
   def decryptAndCheckPadding(data: Array[Byte], iv: Array[Byte]): Boolean = S2_C15_PCKS7RemovePadding.isValidPadding(decrypt(data, iv))
 }
