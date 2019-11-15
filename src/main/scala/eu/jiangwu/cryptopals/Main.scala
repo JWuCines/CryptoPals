@@ -3,7 +3,7 @@ package eu.jiangwu.cryptopals
 import com.google.gson.Gson
 import eu.jiangwu.cryptopals.set1._
 import eu.jiangwu.cryptopals.set2._
-import eu.jiangwu.cryptopals.set3.S3_C17_CBCPaddingOracle
+import eu.jiangwu.cryptopals.set3._
 
 import scala.io.Source
 
@@ -51,17 +51,15 @@ object Main {
       case 3 =>
         chIndex match {
           case 17 => S3_C17_CBCPaddingOracle.run
+          case 18 => S3_C18_AESCTR.run
         }
     }
   }
 
   def readChallengesFromJson: Array[Challenge] = {
-    val json: String = Source.fromResource("challenges.json").getLines.mkString("\n").stripMargin
-    if(json.length > 0) {
-      val gson = new Gson()
-      return gson.fromJson(json, classOf[Challenges]).challenges
-    }
-    Array.empty[Challenge]
+    val json: String = readListFromResource("challenges.json").mkString("\n").stripMargin
+    if(json.length > 0) new Gson().fromJson(json, classOf[Challenges]).challenges
+    else Array.empty[Challenge]
   }
 
 }

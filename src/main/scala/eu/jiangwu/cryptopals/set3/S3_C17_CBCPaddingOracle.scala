@@ -24,36 +24,34 @@ object S3_C17_CBCPaddingOracle {
     Console.println("Decoded and decrypted data, knowing iv: " + S1_C1_HexToBase64.base64Decode(decData).toCharString)
   }
 
-  def forcePreviousBlock(iv: Array[Byte], b: Byte, padLen: Int, kPlain: Array[Byte]): Array[Byte] = {
+  def forcePreviousBlock(iv: Array[Byte], b: Byte, kPlain: Array[Byte]): Array[Byte] = {
+    val padLen: Int = kPlain.size + 1
+    val indexChar = iv.length - padLen
+
     def calcChar(i: Int, by: Byte): Byte = xor(xor(iv(i), by), padLen.toByte)
 
-    val indexChar = iv.length - padLen
     iv.take(indexChar) ++ Array(calcChar(indexChar, b)) ++
       (AES_LENGTH - padLen + 1 until AES_LENGTH).zipWithIndex.map( v => calcChar(v._1, kPlain(v._2)))
   }
 
   def attackPaddingOracle(encData: Array[Byte], oracle: CBCPaddingOracle): Array[Byte] = {
+    def findPreviousBlockChar(iv: Array[Byte], block: Array[Byte], plain: Array[Byte]): Array[Byte] = {
+      (0 until 128).map(_.toByte).toArray.flatMap { c =>
+        if (oracle.decryptAndCheckPadding(block, forcePreviousBlock(iv, c, plain))) Option(c)
+        else None
+      }
+    }
+
     S2_C9_PCKS7Padding.removePadding(
       (Array(oracle.iv) ++ encData.grouped(AES_LENGTH)).sliding(2).flatMap { case blocks: Array[Array[Byte]] =>
       val plainBlock: ArrayBuffer[Byte] = ArrayBuffer.empty[Byte]
       (0 until AES_LENGTH).toArray.foreach { i =>
-        val padLen = plainBlock.size + 1
-        val v = (0 until 128).map(_.toByte).toArray.flatMap { c =>
-          if (oracle.decryptAndCheckPadding(blocks(1), forcePreviousBlock(blocks(0), c, padLen, plainBlock.toArray))) Option(c)
-          else None
-        }
-
-        val vOk = if(v.size > 1) {
-          v.flatMap { b =>
-            (0 until 128).map(_.toByte).flatMap { c =>
-              if (oracle.decryptAndCheckPadding(blocks(1), forcePreviousBlock(blocks(0), c, padLen + 1, Array(b) ++ plainBlock))) Option(b)
-              else None
-            }
+        plainBlock.prepend(
+          findPreviousBlockChar(blocks(0), blocks(1), plainBlock.toArray).reduce { (a, b) =>
+            if(findPreviousBlockChar(blocks(0), blocks(1), Array(a) ++ plainBlock).size > 0) a
+            else b
           }
-        }
-        else v
-
-        plainBlock.prepend(vOk.head)
+        )
       }
       plainBlock
     }.toArray)
