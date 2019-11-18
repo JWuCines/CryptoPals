@@ -30,7 +30,7 @@ object S1_C6_BreakRepeatingKeyXOR {
                                         .map{ case Array(a1, a2) => hamming(a1, a2) }.sum / 6
         (size, avg_distance / size)
     }.minBy(_._2)._1
-    val xored: Array[(Byte, Array[Byte], Double)] = (0 until keysize).map { i =>
+    val xored: Array[(Byte, Array[Byte], Double, Int)] = (0 until keysize).map { i =>
       S1_C3_SingleByteXOR.scoredSingleByteXORMap(Range(i, dec64.length, keysize).map(j => dec64(j)).toArray).maxBy(_._3)
     }.toArray
     val key: String = xored.map(_._1).mkString

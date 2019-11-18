@@ -19,7 +19,7 @@ object S1_C4_DetectSingleXOR {
     */
   def detectSingleXOR(path: String): Array[(Byte, String, Double, String)] = {
     readArrayFromResource(path).map{ c =>
-      singleByteXORMap(c.toByteArrayFromHexString).map(v => (v._1, c, scoreWords(v._2.toCharString), v._2.toCharString)).maxBy(_._3)
+      singleByteXORMap(c.toByteArrayFromHexString).map(v => (v._1, c, scoreWords(v._2), v._2.toCharString)).maxBy(_._3)
     }.sortBy(_._3)
   }
 }
