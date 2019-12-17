@@ -21,7 +21,7 @@ object S2_C10_CBCMode {
         Console.println("Last 10 character (unpad): " + unpadDec.takeRight(10).toHexString)
         Console.println("Unpadded decrypted text:\n" + unpadDec.toCharString)
         val enc: Array[Byte] = aesCBCEncrypt(dec, key.getBytes, iv)
-        Console.println("Encoded back are equal: " + (enc.deep == dec64.deep))
+        Console.println("Encoded back are equal: " + (enc.diff(dec64).isEmpty))
     }
 
     def aesECBEncrypt(data: Array[Byte], key: Array[Byte], mode: String = "AES/ECB/NoPadding"): Array[Byte] = {

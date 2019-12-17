@@ -48,7 +48,7 @@ object S1_C1_HexToBase64 {
       out += (((inFull(2) << 6) & 0xc0) | inFull(3)).toByte
       out
     }.reverse.dropWhile(_ == 0).reverse
-    assert(result.deep == base64DecodeJava(str).deep)
+    assert(result.diff(base64DecodeJava(str)).isEmpty)
     result
   }
 

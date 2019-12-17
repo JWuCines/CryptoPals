@@ -10,7 +10,7 @@ object S3_C18_AESCTR {
       val key: Array[Byte] = "YELLOW SUBMARINE".getBytes
       val s: Array[Byte] = S1_C1_HexToBase64.base64Decode("L77na/nrFsKvynd6HzOoG7GHTLXsTVu9qvY/2syLXzhPweyyMTJULu/6/kXX0KSvoOLSFQ==")
       val d: Array[Byte] = aesCTRDecrypt(s, key)
-      assert(aesCTREncrypt(d, key).deep == s.deep)
+      assert(aesCTREncrypt(d, key).diff(s).isEmpty)
       Console.println("The decrypted message is: " + d.toCharString)
     }
 

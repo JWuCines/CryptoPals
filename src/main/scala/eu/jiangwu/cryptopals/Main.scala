@@ -53,6 +53,7 @@ object Main {
           case 19 => S3_C19_BreakFixedNonceCTRSubstitution.run
           case 20 => S3_C20_BreakFixedNonceCTRStatistically.run
           case 21 => S3_C21_MT19937.run
+          case 22 => S3_C22_CrackMT19937.run
         }
     }
   }

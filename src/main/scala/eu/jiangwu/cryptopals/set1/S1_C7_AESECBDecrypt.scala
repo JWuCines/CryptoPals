@@ -16,7 +16,7 @@ object S1_C7_AESECBDecrypt {
     val data: Array[Byte] = S1_C1_HexToBase64.base64Decode(s)
     val keyData: Array[Byte] = key.getBytes
     val decData: Array[Byte] = decrypt(data, keyData, algo, mode)
-    assert(decData.deep == aesECBDecrypt(data, keyData).deep)
+    assert(decData.diff(aesECBDecrypt(data, keyData)).isEmpty)
     Console.println(">> Decoded text: \n" + decData.toCharString.stripMargin.trim)
   }
 

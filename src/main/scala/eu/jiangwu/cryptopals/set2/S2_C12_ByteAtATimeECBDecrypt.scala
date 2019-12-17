@@ -24,7 +24,7 @@ object S2_C12_ByteAtATimeECBDecrypt {
     Console.println("Block size found: " + blockSize)
     assert(S1_C8_DetectAESECB.detectAESECB(oracle.encrypt('A'.toByte.multiple(100))))
     Console.println("Detected AES ECB correctly")
-    assert(S2_C9_PCKS7Padding.removePadding(byteAtATimeECBDecryption(oracle)).deep == oracle.secret.deep)
+    assert(S2_C9_PCKS7Padding.removePadding(byteAtATimeECBDecryption(oracle)).diff(oracle.secret).isEmpty)
     Console.println("Secret decrypted: \n" + oracle.secret.toCharString)
   }
 
@@ -44,7 +44,7 @@ object S2_C12_ByteAtATimeECBDecrypt {
     val targetBlock = oracle.encrypt(prefix).grouped(blockSize).toArray.apply(blockNumber)
     (0 to 255).foreach { c =>
       val fakeBlock = oracle.encrypt(prefix ++ current ++ Array[Byte](c.toByte)).grouped(blockSize).toArray.apply(blockNumber)
-      if (fakeBlock.deep == targetBlock.deep)  {
+      if (fakeBlock.diff(targetBlock).isEmpty)  {
         return Array[Byte](c.toByte)
       }
     }
