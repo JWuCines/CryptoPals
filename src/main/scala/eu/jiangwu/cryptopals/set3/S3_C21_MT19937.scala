@@ -11,7 +11,7 @@ object S3_C21_MT19937 {
 }
 
 // https://gist.github.com/fedesilva/3409244
-final class MT19937(seed: Int = 5489) {
+final class MT19937(seed: Int = 5489, MT: Array[Long] = Array.empty[Long]) {
   private val N = 624
   private val M = 397
 
@@ -20,11 +20,10 @@ final class MT19937(seed: Int = 5489) {
   private val UpperMask = 0x80000000L
   private val LowerMask = 0x7fffffffL
 
-  private val mt = new Array[Long](N)
   private var mti = N + 1
 
-  mt(0) = seed
-  for (i <- 1 until N) mt(i) = (1812433253L * (mt(i - 1) ^ (mt(i - 1) >>> 30)) + i) & 0xffffffffL
+  private val mt: Array[Long] = if(MT.nonEmpty) MT.take(N)
+                                else (1 until N).scanLeft(seed.toLong)((p, i) => (1812433253L * (p ^ (p >>> 30)) + i) & 0xffffffffL).toArray.prepended(seed)
 
   // Generates the next random integer in the sequence
   def nextInt(): Int = {
@@ -50,6 +49,7 @@ final class MT19937(seed: Int = 5489) {
       mti = 0
     }
 
+    // Temper function
     y = mt(mti); mti += 1
     y ^= y >>> 11
     y ^= (y << 7) & 0x9d2c5680L
