@@ -6,6 +6,8 @@ object S3_C21_MT19937 {
   def run: Unit = {
     val rnd = new MT19937()
     (1 to 10).foreach(i => Console.println("MT19937 rng nextInt attempt " + i + ": " + rnd.nextInt()))
+    (1 to 10).foreach(i => Console.println("MT19937 rng nextInt(Int.MaxValue) attempt " + i + ": " + rnd.nextInt(Int.MaxValue)))
+    (1 to 10).foreach(i => Console.println("MT19937 rng nextLong attempt " + i + ": " + rnd.nextLong()))
     (1 to 10).foreach(i => Console.println("MT19937 rng nextDouble attempt " + i + ": " + rnd.nextDouble()))
   }
 }
@@ -26,7 +28,7 @@ final class MT19937(seed: Int = 5489, MT: Array[Long] = Array.empty[Long]) {
                                 else (1 until N).scanLeft(seed.toLong)((p, i) => (1812433253L * (p ^ (p >>> 30)) + i) & 0xffffffffL).toArray.prepended(seed)
 
   // Generates the next random integer in the sequence
-  def nextInt(): Int = {
+  def nextLong(): Long = {
     var y = 0L
 
     if (mti >= N) {
@@ -56,7 +58,11 @@ final class MT19937(seed: Int = 5489, MT: Array[Long] = Array.empty[Long]) {
     y ^= (y << 15) & 0xefc60000L
     y ^= (y >>> 18)
 
-    y.toInt
+    y
+  }
+
+  def nextInt(): Int = {
+    nextLong().toInt
   }
 
   // Generates a random integer in the interval [0, limit)
@@ -67,8 +73,8 @@ final class MT19937(seed: Int = 5489, MT: Array[Long] = Array.empty[Long]) {
     while (bit > lim) { n += 1; bit >>>= 1 }
 
     // Generate integer, take most significant bits; reject while outside interval
-    var r = (nextInt().toLong & 0xffffffffL) >>> n
-    while (r >= lim) { r = (nextInt().toLong & 0xffffffffL) >>> n }
+    var r = (nextLong & 0xffffffffL) >>> n
+    while (r >= lim) { r = (nextLong & 0xffffffffL) >>> n }
     r.toInt
   }
 
