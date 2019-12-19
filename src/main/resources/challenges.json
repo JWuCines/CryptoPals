@@ -116,19 +116,155 @@
     },
     {
       "index": 4,
-      "name": "Set 4: Stream crypto and randomness"
+      "name": "Set 4: Stream crypto and randomness",
+      "challenges": [
+        {
+          "index": 25,
+          "name": "Break \"random access read/write\" AES CTR"
+        },
+        {
+          "index": 26,
+          "name": "CTR bitflipping"
+        },
+        {
+          "index": 27,
+          "name": "Recover the key from CBC with IV=Key"
+        },
+        {
+          "index": 28,
+          "name": "Implement a SHA-1 keyed MAC"
+        },
+        {
+          "index": 29,
+          "name": "Break a SHA-1 keyed MAC using length extension"
+        },
+        {
+          "index": 30,
+          "name": "Break an MD4 keyed MAC using length extension"
+        },
+        {
+          "index": 31,
+          "name": "Implement and break HMAC-SHA1 with an artificial timing leak"
+        },
+        {
+          "index": 32,
+          "name": "Break HMAC-SHA1 with a slightly less artificial timing leak"
+        }
+      ]
     },
     {
       "index": 5,
-      "name": "Set 5: Diffie-Hellman and friends"
+      "name": "Set 5: Diffie-Hellman and friends",
+      "challenges": [
+        {
+          "index": 33,
+          "name": "Implement Diffie-Hellman"
+        },
+        {
+          "index": 34,
+          "name": "Implement a MITM key-fixing attack on Diffie-Hellman with parameter injection"
+        },
+        {
+          "index": 35,
+          "name": "Implement DH with negotiated groups, and break with malicious \"g\" parameters"
+        },
+        {
+          "index": 36,
+          "name": "Implement Secure Remote Password (SRP)"
+        },
+        {
+          "index": 37,
+          "name": "Break SRP with a zero key"
+        },
+        {
+          "index": 38,
+          "name": "Offline dictionary attack on simplified SRP"
+        },
+        {
+          "index": 39,
+          "name": "Implement RSA"
+        },
+        {
+          "index": 40,
+          "name": "Implement an E=3 RSA Broadcast attack"
+        }
+      ]
     },
     {
       "index": 6,
-      "name": "Set 6: RSA and DSA"
+      "name": "Set 6: RSA and DSA",
+      "challenges": [
+        {
+          "index": 41,
+          "name": "Implement unpadded message recovery oracle"
+        },
+        {
+          "index": 42,
+          "name": "Bleichenbacher's e=3 RSA Attack"
+        },
+        {
+          "index": 43,
+          "name": "DSA key recovery from nonce"
+        },
+        {
+          "index": 44,
+          "name": "DSA nonce recovery from repeated nonce"
+        },
+        {
+          "index": 45,
+          "name": "DSA parameter tampering"
+        },
+        {
+          "index": 46,
+          "name": "RSA parity oracle"
+        },
+        {
+          "index": 47,
+          "name": "Bleichenbacher's PKCS 1.5 Padding Oracle (Simple Case)"
+        },
+        {
+          "index": 48,
+          "name": "Bleichenbacher's PKCS 1.5 Padding Oracle (Complete Case)"
+        }
+      ]
     },
     {
       "index": 7,
-      "name": "Set 7: Hashes"
+      "name": "Set 7: Hashes",
+      "challenges": [
+        {
+          "index": 49,
+          "name": "CBC-MAC Message Forgery"
+        },
+        {
+          "index": 50,
+          "name": "Hashing with CBC-MAC"
+        },
+        {
+          "index": 51,
+          "name": "Compression Ratio Side-Channel Attacks"
+        },
+        {
+          "index": 52,
+          "name": "Iterated Hash Function Multicollisions"
+        },
+        {
+          "index": 53,
+          "name": "Kelsey and Schneier's Expandable Messages"
+        },
+        {
+          "index": 54,
+          "name": "Kelsey and Kohno's Nostradamus Attack"
+        },
+        {
+          "index": 55,
+          "name": "MD4 Collisions"
+        },
+        {
+          "index": 56,
+          "name": "RC4 Single-Byte Biases"
+        }
+      ]
     },
     {
       "index": 8,

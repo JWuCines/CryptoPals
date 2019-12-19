@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import eu.jiangwu.cryptopals.set1._
 import eu.jiangwu.cryptopals.set2._
 import eu.jiangwu.cryptopals.set3._
+import eu.jiangwu.cryptopals.set4._
 
 case class Challenge(index: Int, name: String, challenges: Array[Challenge] = Array.empty[Challenge])
 case class Challenges(challenges: Array[Challenge])
@@ -26,13 +27,8 @@ object Main {
           case 3 => S1_C3_SingleByteXOR.run
           case 4 => S1_C4_DetectSingleXOR.run
           case 5 => S1_C5_RepeatingKeyXOR.run
-          case 6 =>
-            assert(S1_C6_BreakRepeatingKeyXOR.hamming("this is a test", "wokka wokka!!!") == 37)
-            S1_C6_BreakRepeatingKeyXOR.run
-          case 7 =>
-            val key: String = "YELLOW SUBMARINE"
-            assert(key.length == 16)
-            S1_C7_AESECBDecrypt.run(key)
+          case 6 => S1_C6_BreakRepeatingKeyXOR.run
+          case 7 => S1_C7_AESECBDecrypt.run
           case 8 => S1_C8_DetectAESECB.run
         }
       case 2 =>
@@ -56,6 +52,10 @@ object Main {
           case 22 => S3_C22_CrackMT19937.run
           case 23 => S3_C23_CloneMT19937FromOutput.run
           case 24 => S3_C24_MT19937StreamCipher.run
+        }
+      case 4 =>
+        chIndex match {
+          case 25 => S4_C25_BreakRandomRWAESCTR.run
         }
     }
   }

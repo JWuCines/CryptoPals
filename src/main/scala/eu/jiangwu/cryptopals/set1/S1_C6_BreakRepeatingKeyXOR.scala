@@ -3,6 +3,7 @@ package set1
 
 object S1_C6_BreakRepeatingKeyXOR {
   def run: Unit = {
+    assert(S1_C6_BreakRepeatingKeyXOR.hamming("this is a test", "wokka wokka!!!") == 37)
     val path: String = "set1/6.txt"
     val message: String = readArrayFromResource(path).mkString
     val (_, output, key) = breakRepeatingKeyXOR(message)
